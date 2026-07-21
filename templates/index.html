@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1>Your Vault</h1>
+
+    <h2>Add an Entry</h2>
+    <form action="/" method="post" class="vault-form">
+        <input name="site" placeholder="Site (e.g. github.com)" type="text" required>
+        <input name="site_username" placeholder="Username / Email" type="text" required>
+        <input name="password" placeholder="Password" type="password" required>
+        <button type="submit">Add to Vault</button>
+    </form>
+
+    <h2>Stored Entries</h2>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Site</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Strength</th>
+                <th>Breached</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.site }}</td>
+                    <td>{{ entry.site_username }}</td>
+                    <td>
+                        <span id="pw-{{ entry.id }}">••••••••</span>
+                        <button type="button" onclick="reveal({{ entry.id }})">Show</button>
+                    </td>
+                    <td>{{ "★" * entry.strength_score }}{{ "☆" * (4 - entry.strength_score) }}</td>
+                    <td>{% if entry.breached %}⚠️ Yes{% else %}✅ No{% endif %}</td>
+                    <td>
+                        <form action="/delete/{{ entry.id }}" method="post" onsubmit="return confirm('Delete this entry?');">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        async function reveal(id) {
+            const response = await fetch(`/reveal/${id}`);
+            const data = await response.json();
+            document.getElementById(`pw-${id}`).textContent = data.password;
+        }
+    </script>
+{% endblock %}

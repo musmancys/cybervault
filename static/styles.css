@@ -1,0 +1,93 @@
+* { box-sizing: border-box; }
+
+body {
+    background: #0f1117;
+    color: #e6e6e6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #161925;
+    border-bottom: 1px solid #262a3d;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #7cf5c4;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: #cfd3e6;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+h1, h2 {
+    color: #f5f5f5;
+}
+
+.flash {
+    background: #1e2a1e;
+    border: 1px solid #3a5a3a;
+    color: #b7e3b7;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+form.auth-form, form.vault-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin-bottom: 24px;
+}
+
+input, button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #333850;
+    background: #1b1e2b;
+    color: #e6e6e6;
+    font-size: 1rem;
+}
+
+button {
+    background: #2fae74;
+    color: #0f1117;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background: #26935f;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #262a3d;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #161925;
+}
